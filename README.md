@@ -10,4 +10,5 @@
   npm install express@4.17.1
   npm i mongoose@6.0.4 # Mac M1 chip
   npm install express-handlebars@4.0.2
+  npm install body-parser@1.20.0
 ```

@@ -1,0 +1,28 @@
+
+<form action="/records" method="POST">
+  <div class="new new-title-container">
+    <div class="new-title-text">請輸入你的支出</div>
+  </div>
+  <div class="new new-item-name-container">
+    <label for="new-item-name" class="label-name">名稱*:</label>
+    <input type="text" name="name" class="new-item-name" id="new-item-name" value="{{name}}">
+  </div>
+  <div class="new new-date-container">
+    <label for="new-date" class="label-date">日期*:</label>
+    <input type="date" name="date" class="new-date" id="new-date" value="{{date}}">
+  </div>
+  <div class="new new-category-container">
+    <label for="new-category-title" class="label-category-title">類別*:</label>
+    <select name="categoryId" id="new-category-title" value="{{categoryId}}">
+      <option value="0" selected disabled>Select</option>
+      {{#each gategorys}}
+      <option value="{{this.id}}">{{this.name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="new new-amount-container">
+    <label for="new-amount" class="label-amount">金額*:</label>
+    <input type="number" name="amount" class="new-amount" id="new-amount" value="{{amount}}">
+  </div>
+  <button type="submit" class="new new-btn">新增支出</button>
+</form>
