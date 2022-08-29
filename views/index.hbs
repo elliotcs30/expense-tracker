@@ -3,7 +3,8 @@
 <ul>
   {{#each records}}
     <li>
-      {{this.name}}, {{this.data}}, {{this.amount}}, {{this.userId}}, {{this.categoryId}}, {{this.createAt}}
+      {{this.name}}, {{this.data}}, {{this.amount}}, {{this.userId}}, {{this.categoryId}}, {{this.createAt}} <br>
+      <a href="./records/{{ this._id }}">detail</a>
     </li>
   {{/each}}
 </ul>
