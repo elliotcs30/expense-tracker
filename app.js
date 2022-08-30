@@ -64,6 +64,29 @@ app.get('/records/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+
+  return Record.findById(id)
+  .lean()
+  .then(record => {
+    Gategory.find()
+      .lean()
+      .then(gategorys => {
+        res.render('edit', { record, gategorys })
+      })
+  })
+  .catch(error => console.log(error))
+})
+
+app.post('/records/:id/edit', (req, res) => {
+  const id = req.params.id
+
+  return Record.findByIdAndUpdate( id, req.body) // 存入資料庫
+    .then(()=> res.redirect(`/records/${id}`))
+    .catch(error => console.log(error))
+})
+
 // 設定 port 3000
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
