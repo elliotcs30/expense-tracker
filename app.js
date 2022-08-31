@@ -39,7 +39,7 @@ app.get('/records/new', (req, res) => {
 
   Gategory.find() // 取出 Gategory model 裡的所有資料
     .lean()
-    .sort({ _id : 'asc' }) // 升冪'asc', 降冪'desc'
+    .sort({ id : 'asc' }) // 升冪'asc', 降冪'desc'
     .then(gategorys => res.render('new', { gategorys }))
     .catch(error => console.error(error))
 })
@@ -58,7 +58,7 @@ app.post('/records', (req, res) => {
 
 app.get('/records/:id', (req, res) => {
   const id = req.params.id
-  
+
   return Record.findById(id)
     .lean()
     .then(record => res.render('detail', { record }))
@@ -67,7 +67,7 @@ app.get('/records/:id', (req, res) => {
 
 app.get('/records/:id/edit', async (req, res) => {
   const id = req.params.id
-  const gategorys = await Gategory.find().lean()
+  const gategorys = await Gategory.find().lean().sort({ id: 'asc' })
 
   return Record.findById(id)
   .lean()
