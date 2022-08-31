@@ -58,24 +58,20 @@ app.post('/records', (req, res) => {
 
 app.get('/records/:id', (req, res) => {
   const id = req.params.id
+  
   return Record.findById(id)
     .lean()
     .then(record => res.render('detail', { record }))
     .catch(error => console.log(error))
 })
 
-app.get('/records/:id/edit', (req, res) => {
+app.get('/records/:id/edit', async (req, res) => {
   const id = req.params.id
+  const gategorys = await Gategory.find().lean()
 
   return Record.findById(id)
   .lean()
-  .then(record => {
-    Gategory.find()
-      .lean()
-      .then(gategorys => {
-        res.render('edit', { record, gategorys })
-      })
-  })
+  .then(record => res.render('edit', { record, gategorys }))
   .catch(error => console.log(error))
 })
 
