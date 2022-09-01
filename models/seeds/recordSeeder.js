@@ -1,12 +1,10 @@
-const mongoose = require('mongoose')
 const Record = require('../record') // 載入 record model
 const recordList = require('../../records.json').results
 
 const User = require('../user') // 載入 user model
 const userList = require('../../users.json').results
 
-mongoose.connect( process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true } )
-const db = mongoose.connection
+const db = require('../../config/mongoose')
 
 db.on('error', () => {
   console.log('mongodb error!')
