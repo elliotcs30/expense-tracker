@@ -15,7 +15,7 @@
     <label for="new-category-title" class="label-category-title">類別*:</label>
     <select name="categoryId" id="new-category-title" value="{{categoryId}}">
       <option value="0" selected disabled>Select</option>
-      {{#each gategorys}}
+      {{#each categorys}}
       <option value="{{this.id}}">{{this.name}}</option>
       {{/each}}
     </select>
