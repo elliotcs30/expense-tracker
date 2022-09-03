@@ -11,7 +11,17 @@ router.get('/new', (req, res) => {
   Category.find() // 取出 Category model 裡的所有資料
     .lean()
     .sort({ id : 'asc' }) // 升冪'asc', 降冪'desc'
-    .then(categorys => res.render('new', { categorys }))
+    .then(categorys => {
+      
+      const date = new Date()
+      // 如果月份為個位數, 就把月份第1位數補0變成兩位數, ex: 2022-09-04
+      const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`
+      // 如果天數為個位數, 就把月份第1位數補0變成兩位數, ex: 2022-09-04
+      const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
+      const today = `${date.getFullYear()}-${month}-${day}`
+
+      res.render('new', { categorys, today })
+  })
     .catch(error => console.error(error))
 })
 

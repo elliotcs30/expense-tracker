@@ -1,28 +1,45 @@
+<div class="new-container">
+  <form action="/records" method="POST">
+    <div class="form-group row mb-3">
+      <label class="col-4 col-form-label">* 必填欄位</label>
+      <label class="col-8 col-form-label text-center">請輸入你的支出</label>
+    </div>
 
-<form action="/records" method="POST">
-  <div class="new new-title-container">
-    <div class="new-title-text">請輸入你的支出</div>
-  </div>
-  <div class="new new-item-name-container">
-    <label for="new-item-name" class="label-name">名稱*:</label>
-    <input type="text" name="name" class="new-item-name" id="new-item-name" value="{{name}}">
-  </div>
-  <div class="new new-date-container">
-    <label for="new-date" class="label-date">日期*:</label>
-    <input type="date" name="date" class="new-date" id="new-date" value="{{date}}">
-  </div>
-  <div class="new new-category-container">
-    <label for="new-category-title" class="label-category-title">類別*:</label>
-    <select name="categoryId" id="new-category-title" value="{{categoryId}}">
-      <option value="0" selected disabled>Select</option>
-      {{#each categorys}}
-      <option value="{{this.id}}">{{this.name}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div class="new new-amount-container">
-    <label for="new-amount" class="label-amount">金額*:</label>
-    <input type="number" name="amount" class="new-amount" id="new-amount" value="{{amount}}">
-  </div>
-  <button type="submit" class="new new-btn">新增支出</button>
-</form>
+    <div class="form-group row mb-3">
+      <label for="new-name" class="col-4 col-form-label">名稱*:</label>
+      <div class="col-8">
+        <input type="text" class="form-control" name="name" id="new-name" placeholder="請輸入支出名稱">
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="new-date" class="col-4 col-form-label">日期*:</label>
+      <div class="col-8">
+        <input type="date" class="form-control" name="date" id="new-date" placeholder="請輸入支出日期" value="{{ today }}">
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="new-category" class="col-4 col-form-label">類別*:</label>
+      <div class="col-8">
+        <select class="form-control" name="categoryId" id="new-category">
+          <option selected disabled> Select </option>
+          {{#each categorys}}
+            <option value="{{this.id}}"> {{this.name}} </option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row mb-3">
+      <label for="new-amount" class="col-4 col-form-label">金額*:</label>
+      <div class="col-8">
+        <input type="number" class="form-control" name="amount" id="new-amount" placeholder="請輸入支出金額">
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">新增支出</button>
+    </div>
+  </form>
+</div>
