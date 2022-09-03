@@ -17,3 +17,28 @@
   text-align: center;
   vertical-align: middle;
 }
+
+/* edit */
+.edit-container {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.edit-field {
+  margin: 5px;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.edit-field-name {
+  margin: 10px 30px;
+  text-align: left;
+}
+
+.edit-field-content {
+  margin: 10px auto;
+}

@@ -27,8 +27,6 @@ router.get('/', (req, res) => {
             })
 
             totalAmount += record.amount
-
-            record.date = `${record.date.getFullYear()}/${record.date.getMonth() + 1}/${record.date.getDate()}`
           })
         ])
         .then(() => {

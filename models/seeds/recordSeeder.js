@@ -21,6 +21,15 @@ db.once('open', () => {
   .then(() => {
     return Promise.all(
       recordList.map(record => {
+
+        const date = new Date()
+        // 如果月份為個位數, 就把月份第1位數補0變成兩位數, ex: 2022-09-04
+        const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : `${date.getMonth() + 1}`
+        // 如果天數為個位數, 就把月份第1位數補0變成兩位數, ex: 2022-09-04
+        const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
+      
+        record.date = `${date.getFullYear()}-${month}-${day}`
+
         return Record.create(record)
       })
     ).then(() => {

@@ -50,7 +50,7 @@ router.put('/:id', (req, res) => {
   const id = req.params.id
 
   return Record.findByIdAndUpdate( id, req.body) // 存入資料庫
-    .then(()=> res.redirect(`/records/${id}`))
+    .then(()=> res.redirect(`/`))
     .catch(error => console.log(error))
 })
 
