@@ -1,14 +1,43 @@
-<a href="./records/new">Create</a>
+<header class="select-container">
+  <select class="form-select" aria-label="Default select example">
+    <option selected>類別</option>
+    {{#each categorys}}
+      <option value="{{this.id}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+</header>
 
-<ul>
-  {{#each records}}
-    <li>
-      {{this.name}}, {{this.data}}, {{this.amount}}, {{this.userId}}, {{this.categoryId}}, {{this.createAt}} <br>
-      <a href="./records/{{ this._id }}">detail</a>
-      <a href="./records/{{ this._id }}/edit">edit</a>
-      <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-        <button type="submit">delete</button>
-      </form>
-    </li>
-  {{/each}}
-</ul>
+<main>
+  <h4 style="display: inline; vertical-align: middle;">總金額：</h4>
+  <div class="total-amount">{{totalAmount}}</div>
+
+  <table class="table table-striped">
+    <tbody>
+      {{#each records}}
+      <tr>
+        <td class="col-1 text-center">
+          <i class="{{this.icon}} fa-3x" style="color:#90D1DF;"></i>
+        </td>
+        <td>
+          <div class="row">
+            <h4>{{this.name}}</h4>
+            <p>{{this.date}}</p>
+          </div>
+        </td>
+        <td class="text-center">{{this.amount}}</td>
+        <td class="col-3 text-center" style="background-color: #F8F9FA;">
+          <a href="./records/{{ this._id }}/edit" class="btn btn-success" >edit</a>
+          <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger" >delete</button>
+          </form>
+        </td>
+        
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</main>
+
+<footer class="col text-center">
+  <a class="btn" style="background: #EC673E; color: #fff;" href="./records/new">新增支出</a>
+</footer>
