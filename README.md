@@ -13,5 +13,6 @@
   npm install body-parser@1.20.0
   npm install method-override@3.0.0
   npm install express-session@1.17.1
+  npm install passport@0.4.1 passport-local@1.0.0
 
 ```
