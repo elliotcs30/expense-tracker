@@ -3,7 +3,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const User = require('../models/user')
 // 引用 Facebook 登入策略
-const FacebookStrategy = require('passport-facebook').Strategy
+const FacebookStrategy = require('passport-facebook')
 
 module.exports = app => {
   // 初始化 Passport 模組
