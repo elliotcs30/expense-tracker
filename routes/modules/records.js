@@ -26,8 +26,8 @@ router.get('/new', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  // 假設當前登入使用者是 1
-  req.body.userId = 1
+  // 當前登入使用者 user id 
+  req.body.userId = req.user._id
 
   // 轉換型別: 經過 body-parser 處理後型別改為字串，但 model 設定的型別為 Number
   req.body.categoryId = Number(req.body.categoryId)
@@ -38,35 +38,41 @@ router.post('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-  const id = req.params.id
+  const _id = req.params.id
+  const userId = req.user._id
 
-  return Record.findById(id)
+  return Record.findOne({ _id, userId })
     .lean()
     .then(record => res.render('detail', { record }))
     .catch(error => console.log(error))
 })
 
 router.get('/:id/edit', async (req, res) => {
-  const id = req.params.id
-  const categorys = await Category.find().lean().sort({ id: 'asc' })
+  const userId = req.user._id
+  const _id = req.params.id
+  const categorys = await Category.find().lean().sort({ _id: 'asc' })
 
-  return Record.findById(id)
+  return Record.findById({_id, userId})
   .lean()
   .then(record => res.render('edit', { record, categorys }))
   .catch(error => console.log(error))
 })
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id
-
-  return Record.findByIdAndUpdate( id, req.body) // 存入資料庫
+  // 當前登入使用者 user id 
+  req.body.userId = req.user._id
+  const _id = req.params.id
+  
+  return Record.findByIdAndUpdate( _id, req.body) // 存入資料庫
     .then(()=> res.redirect(`/`))
     .catch(error => console.log(error))
 })
 
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+
+  return Record.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

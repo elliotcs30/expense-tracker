@@ -18,7 +18,7 @@ db.once('open', () => {
       return User.create(user)
     })
   )
-  .then(() => {
+  .then(user => {
     return Promise.all(
       recordList.map(record => {
 
@@ -29,6 +29,8 @@ db.once('open', () => {
         const day = date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`
       
         record.date = `${date.getFullYear()}-${month}-${day}`
+
+        record.userId === 1 ? record.userId = user[0]._id : record.userId = user[1]._id
 
         return Record.create(record)
       })
