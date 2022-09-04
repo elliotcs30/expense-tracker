@@ -39,5 +39,35 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error)) // 錯誤處理
 })
 
+// 設置搜尋路由
+router.get('/sort', (req, res) => {
+  const sort = req.query.sort.trim().toLowerCase()
+
+  Record.find({ categoryId: sort })
+  .lean()
+  .then(records => {
+    let totalAmount = 0
+
+    Categorys
+    .find()
+    .lean()
+    .then(categorys => {
+      Promise.all([
+        records.map(record => {
+          categorys.map(category => {
+            if (record.categoryId === category.id) {
+              record.icon = category.icon
+            }
+          })
+          totalAmount += record.amount
+        })
+      ])
+      .then(() => {
+        res.render('index', { records, categorys, totalAmount })
+      })
+    })
+  })
+})
+
 // 匯出路由模組
 module.exports = router
