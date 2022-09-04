@@ -4,7 +4,11 @@ const session = require('express-session')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const flash = require('connect-flash') 
+const flash = require('connect-flash')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const routes = require('./routes') // 引用路由器
 
@@ -17,7 +21,7 @@ app.set('view engine', 'hbs')
 
 app.use(session({
   // session 用來驗證 session id 的字串
-  secret: 'loginInfo',
+  secret: 'LoginInfo',
   // 每一次與使用者互動後，強制把 session 更新到 session store 裡
   resave: false,
   // 強制將未初始化的 session 存回 session store

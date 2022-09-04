@@ -16,5 +16,7 @@
   npm install passport@0.4.1 passport-local@1.0.0
   npm install connect-flash@0.1.1
   npm install bcryptjs@2.4.3
+  npm install passport-facebook@3.0.0
+  npm install dotenv@8.2.0
 
 ```
