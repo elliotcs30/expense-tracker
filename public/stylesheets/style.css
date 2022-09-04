@@ -24,3 +24,8 @@
   margin: 10px auto;
   padding: 10px;
 }
+
+.create-record {
+  background: #EC673E; 
+  color: #fff;
+}

@@ -26,9 +26,9 @@
         </td>
         <td class="text-center">{{this.amount}}</td>
         <td class="col-3 text-center" style="background-color: #F8F9FA;">
-          <a href="./records/{{ this._id }}/edit" class="btn btn-success" >edit</a>
+          <a href="./records/{{ this._id }}/edit" class="btn btn-success" >編輯</a>
           <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-            <button type="submit" class="btn btn-danger" >delete</button>
+            <button type="submit" class="btn btn-danger" >刪除</button>
           </form>
         </td>
         
@@ -39,5 +39,5 @@
 </main>
 
 <footer class="col text-center">
-  <a class="btn" style="background: #EC673E; color: #fff;" href="./records/new">新增支出</a>
+  <a class="btn create-record" href="./records/new">新增支出</a>
 </footer>
