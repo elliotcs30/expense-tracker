@@ -3,6 +3,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 const routes = require('./routes') // 引用路由器
 require('./config/mongoose')
@@ -23,6 +24,15 @@ app.use(methodOverride('_method'))
 
 // 將 request 導入路由器
 app.use(routes)
+
+app.use(session({
+  // session 用來驗證 session id 的字串
+  secret: 'loginInfo',
+  // 每一次與使用者互動後，強制把 session 更新到 session store 裡
+  resave: false,
+  // 強制將未初始化的 session 存回 session store
+  saveUninitialized: true
+}))
 
 // 設定 port 3000
 app.listen(3000, () => {

@@ -12,4 +12,6 @@
   npm install express-handlebars@4.0.2
   npm install body-parser@1.20.0
   npm install method-override@3.0.0
+  npm install express-session@1.17.1
+
 ```
