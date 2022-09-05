@@ -1,7 +1,4 @@
 const bcrypt = require('bcryptjs')
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
 
 const Record = require('../record') // 載入 record model
 const recordList = require('../../records.json').results
