@@ -56,6 +56,7 @@ router.get('/sort', (req, res) => {
         records.map(record => {
           categorys.map(category => {
             if (record.categoryId === category.id) {
+              category.selected = 'selected'
               record.icon = category.icon
             }
           })

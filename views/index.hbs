@@ -1,9 +1,9 @@
 <header class="select-container">
   <form action="/sort">
     <select class="form-select" id="sort" name="sort" aria-label="Default select example" onchange="this.form.submit()">
-      <option selected>類別</option>
+      <option>類別</option>
       {{#each categorys}}
-        <option value="{{this.id}}">{{this.name}}</option>
+        <option value="{{this.id}}" {{this.selected}}>{{this.name}}</option>
       {{/each}}
     </select>
   </form>
