@@ -50,12 +50,16 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', async (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  const categorys = await Category.find().lean().sort({ _id: 'asc' })
-
-  return Record.findById({_id, userId})
-  .lean()
-  .then(record => res.render('edit', { record, categorys }))
-  .catch(error => console.log(error))
+  
+  Record.findById({_id, userId})
+    .lean()
+    .then(record => {
+      Category.find()
+        .lean()
+        .sort({ _id: 'asc' })
+        .then(categorys => res.render('edit', { record, categorys }))
+    })
+    .catch(error => console.log(error))  
 })
 
 router.put('/:id', (req, res) => {
