@@ -56,6 +56,7 @@ router.get('/sort', (req, res) => {
     Categorys
     .find()
     .lean()
+    .sort({ _id: 'asc' }) // desc
     .then(categorys => {
       Promise.all([
         records.map(record => {
