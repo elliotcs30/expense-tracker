@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
       Categorys
       .find()
       .lean()
+      .sort({ _id: 'asc' }) // desc
       .then(categorys => {
         Promise.all([
           records.map(record => {
@@ -42,6 +43,10 @@ router.get('/', (req, res) => {
 // 設置搜尋路由
 router.get('/sort', (req, res) => {
   const sort = req.query.sort.trim().toLowerCase()
+
+  if (sort === '類別') {
+    return res.redirect('/')
+  }
 
   Record.find({ categoryId: sort })
   .lean()
